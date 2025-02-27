@@ -1,5 +1,18 @@
 import subprocess
+import sys
 from os import chdir, getcwd, makedirs, path 
+
+def handle_bundled_path() -> list[str]:
+    if getattr(sys, 'frozen', False):  # Check if we're running from a bundled .exe
+        # Running in bundled app, so adjust the paths
+        DEV_PACKAGES_PATH = path.join(sys._MEIPASS, "packages", "dev.txt")
+        PROD_PACKAGES_PATH = path.join(sys._MEIPASS, "packages", "prod.txt")
+    else:
+        # Running as a script, so use normal relative paths
+        DEV_PACKAGES_PATH = "./packages/dev.txt"
+        PROD_PACKAGES_PATH = "./packages/prod.txt"
+    return [DEV_PACKAGES_PATH, PROD_PACKAGES_PATH]
+    
 
 def handle_path(inputpath: str) -> str:
     """
@@ -93,10 +106,13 @@ def move_to_workdir(workdir_path: str) -> None:
         print(f"✅ Changed directory to {workdir_path}")
     except FileNotFoundError:
         print(f"❌ The directory {workdir_path} was not found")
+        sys.exit(-1)
     except PermissionError:
         print(f"❌ Permission denied to access {workdir_path}")
+        sys.exit(-1)
     except Exception as e:
         print(f"❌ An unknown error occurred while changing directory: {e}")
+        sys.exit(-1)
 
 def node_init() -> None:
     """

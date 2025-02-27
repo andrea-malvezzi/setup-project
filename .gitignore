@@ -1,4 +1,5 @@
 /setupProject
 /dist
 /build
-main.spec
+/__pycache__
+setup_project.spec
