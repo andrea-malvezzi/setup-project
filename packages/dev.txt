@@ -1,0 +1,3 @@
+tailwindcss@latest
+daisyui@latest
+nodemon
