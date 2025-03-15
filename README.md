@@ -33,3 +33,10 @@ to activate it, run one of the following commands, based on the OS of your machi
 
 then run the following to download all dependencies for the project:
 `pip install -r requirements.txt`
+
+## Usage
+
+To create an .exe file able to setup the project, simply run"
+`pyinstaller --onefile --add-data "packages/dev.txt;packages" --add-data "packages/prod.txt;packages" main.py`
+
+After the command terminates it's execution, you're ready to start coding!
