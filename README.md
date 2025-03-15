@@ -37,6 +37,6 @@ then run the following to download all dependencies for the project:
 ## Usage
 
 To create an .exe file able to setup the project, simply run"
-`pyinstaller --onefile --add-data "packages/dev.txt;packages" --add-data "packages/prod.txt;packages" main.py`
+`pyinstaller --onefile --add-data "packages/dev.txt;packages" --add-data "packages/prod.txt;packages" --add-data "packages/ts.txt;packages" main.py`
 
 After the command terminates it's execution, you're ready to start coding!
